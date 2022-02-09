@@ -12,8 +12,8 @@ ENV USER=user \
     FUSEKI_BASE=/fuseki \
     FUSEKI_HOME=/jena-fuseki \
     RAM=20G \
-    LANG C.UTF-8 \
-    PATH $PATH:/jena-fuseki/bin \
+    LANG=C.UTF-8 \
+    PATH=$PATH:/jena-fuseki/bin \
     JAVA_OPTS="-XX:+UnlockExperimentalVMOptions -XX:+UseContainerSupport -XX:MaxRAMFraction=1 -XX:+UseShenandoahGC -XX:ShenandoahGCHeuristics=compact -XX:+UseStringDeduplication -XX:+ExitOnOutOfMemoryError"   
 
 COPY custom /custom
