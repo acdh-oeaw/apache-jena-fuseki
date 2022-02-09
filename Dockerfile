@@ -8,7 +8,6 @@ ENV USER=user \
     SHA512=21850b9d106d40962cb8358cf5731509ed9f38be7f47a0fc7e2fa22247d89faf7b4ef3ecb58cac590b7592b3b8340b80214ab7ca67b9d1231acb68df62b8bd3d \
     VERSION=4.4.0 \
     JENA_LIB_SHA512=e0fdb8a87560347e1691aec28ad9ebae59a6b32cce80a02b6ce2215826195347bb550ded9ccb0a44961724c26ad801e22c04fad9a2cab4bebae6ffff73ff4d96 \
-    JENA_LIB_VERSION=4.4.0 \
     MIRROR=http://www.apache.org/dyn/mirrors/mirrors.cgi?action=download&filename= \
     ARCHIVE=http://archive.apache.org/dist/ \
     FUSEKI_BASE=/fuseki \
@@ -37,8 +36,8 @@ RUN apt-get update && apt-get install -y vim wget unzip curl links ruby sudo bas
     # sha512 checksum
     cd /tmp && echo "$JENA_LIB_SHA512  jena.tar.gz" > jena.tar.gz.sha512 && \
     # Download/check/unpack/move in one go (to reduce image size)
-    (curl --location --silent --show-error --fail --retry-connrefused --retry 3 --output jena.tar.gz ${MIRROR}jena/binaries/apache-jena-$JENA_LIB_VERSION.tar.gz || \
-         curl --fail --silent --show-error --retry-connrefused --retry 3 --output jena.tar.gz $ARCHIVE/jena/binaries/apache-jena-$JENA_LIB_VERSION.tar.gz) && \
+    (curl --location --silent --show-error --fail --retry-connrefused --retry 3 --output jena.tar.gz ${MIRROR}jena/binaries/apache-jena-$VERSION.tar.gz || \
+         curl --fail --silent --show-error --retry-connrefused --retry 3 --output jena.tar.gz $ARCHIVE/jena/binaries/apache-jena-$VERSION.tar.gz) && \
     sha512sum -c jena.tar.gz.sha512 && \
     tar zxf jena.tar.gz && \
     mv apache-jena*/bin/* /jena-fuseki/bin/ && \
