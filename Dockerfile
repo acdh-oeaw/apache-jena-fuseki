@@ -19,7 +19,7 @@ ENV USER=user \
 
 COPY custom /custom
 
-RUN apt-get update && apt-get install -y wget unzip curl links ruby sudo bash curl ca-certificates findutils coreutils gettext pwgen procps tini && \
+RUN apt-get update && apt-get install -y vim wget unzip curl links ruby sudo bash curl ca-certificates findutils coreutils gettext pwgen procps tini && \
     apt-get clean && \
     groupadd --gid $UID $USER && useradd --gid $UID --uid $UID -d / $USER && echo "user:$6$04SIq7OY$7PT2WujGKsr6013IByauNo0tYLj/fperYRMC4nrsbODc9z.cnxqXDRkAmh8anwDwKctRUTiGhuoeali4JoeW8/:16231:0:99999:7:::" >> /etc/shadow && \
     mkdir -p $FUSEKI_BASE && \
@@ -68,5 +68,5 @@ VOLUME $FUSEKI_BASE
 
 EXPOSE 3030
 ENTRYPOINT ["/usr/bin/tini", "--", "/docker-entrypoint.sh"]
-#NOTE: for importing put command "/jena/bin/riot" in Rancher command field  
+#NOTE: for importing put command "/bin/bash" in Rancher command field  
 CMD ["/jena-fuseki/fuseki-server"]
