@@ -49,9 +49,7 @@ RUN apt-get update && apt-get install -y vim wget unzip curl links ruby sudo bas
     cp -r /custom/shiro.ini $FUSEKI_BASE/  && \
     cp -r /custom/docker-entrypoint.sh /docker-entrypoint.sh  && \
     cp -r /custom/load.sh /vocabs-import/ && \
-    cp -r /custom/tdbloader /vocabs-import/ && \
-    cp -r /custom/tdbloader2 /vocabs-import/ && \
-    chmod 755 /vocabs-import/load.sh /vocabs-import/tdbloader /vocabs-import/tdbloader2 && \
+    chmod 755 /vocabs-import/load.sh  && \
     chmod +x $FUSEKI_HOME/fuseki-server.jar && \
     rm -fr /custom && \ 
     mkdir -p /vocabs-import && \ 
