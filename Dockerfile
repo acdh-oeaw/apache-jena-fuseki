@@ -17,11 +17,9 @@ ENV USER=user \
 COPY custom /custom
 
 RUN apt-get update && apt-get install -y wget unzip curl links ruby sudo && \
-    apt-get clean 
-
-RUN groupadd --gid $UID $USER && useradd --gid $UID --uid $UID -d / $USER && echo "user:$6$04SIq7OY$7PT2WujGKsr6013IByauNo0tYLj/fperYRMC4nrsbODc9z.cnxqXDRkAmh8anwDwKctRUTiGhuoeali4JoeW8/:16231:0:99999:7:::" >> /etc/shadow
-
-RUN mkdir -p $FUSEKI_BASE && \
+    apt-get clean && \
+    groupadd --gid $UID $USER && useradd --gid $UID --uid $UID -d / $USER && echo "user:$6$04SIq7OY$7PT2WujGKsr6013IByauNo0tYLj/fperYRMC4nrsbODc9z.cnxqXDRkAmh8anwDwKctRUTiGhuoeali4JoeW8/:16231:0:99999:7:::" >> /etc/shadow && \
+    mkdir -p $FUSEKI_BASE && \
     mkdir -p $FUSEKI_HOME && \
     cd /tmp && echo "$SHA512  fuseki.tar.gz" > fuseki.tar.gz.sha512 && \
     wget -O fuseki.tar.gz $MIRRORjena/binaries/apache-jena-fuseki-$VERSION.tar.gz || \
@@ -31,11 +29,10 @@ RUN mkdir -p $FUSEKI_BASE && \
     mv apache-jena-fuseki*/* $FUSEKI_HOME && \
     rm -fr apache-jena-fuseki* && \
     rm fuseki.tar.gz* && \
-    cd $FUSEKI_HOME && rm -rf fuseki.war 
-
-RUN cp -r /custom/* $FUSEKI_BASE/  && \
+    cd $FUSEKI_HOME && rm -rf fuseki.war && \
+    cp -r /custom/* $FUSEKI_BASE/  && \
     rm -fr /custom && \ 
-    sed -i 's|1200M|20600M|g' $FUSEKI_HOME/fuseki-server && \
+    sed -i 's|1200M|$RAM|g' $FUSEKI_HOME/fuseki-server && \
     chown -R $USER:$USER  $FUSEKI_HOME $FUSEKI_BASE
 
 USER $USER
