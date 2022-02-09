@@ -11,7 +11,6 @@ ENV USER=user \
     ARCHIVE=http://archive.apache.org/dist/ \
     FUSEKI_BASE=/fuseki \
     FUSEKI_HOME=/jena-fuseki \
-    RAM=20G \
     LANG=C.UTF-8 \
     PATH=$PATH:/jena-fuseki/bin \
     JAVA_OPTS="-XX:+UnlockExperimentalVMOptions -XX:+UseContainerSupport -XX:MaxRAMFraction=1 -XX:+UseShenandoahGC -XX:ShenandoahGCHeuristics=compact -XX:+UseStringDeduplication -XX:+ExitOnOutOfMemoryError"   
@@ -41,7 +40,6 @@ RUN apt-get update && apt-get install -y wget unzip curl links ruby sudo bash cu
     cp -r /custom/tdbloader2 /vocabs-import/ && \
     chmod 755 /vocabs-import/load.sh /vocabs-import/tdbloader /vocabs-import/tdbloader2 && \
     rm -fr /custom && \ 
-    sed -i 's|--Xmx4G|--Xmx$RAM|g' $FUSEKI_HOME/fuseki-server && \
     mkdir -p /vocabs-import && \ 
     cd /vocabs-import && \
     ln -s $FUSEKI_BASE/databases databases && \
