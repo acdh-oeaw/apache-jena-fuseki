@@ -32,6 +32,7 @@ RUN apt-get update && apt-get install -y wget unzip curl links ruby sudo bash cu
     rm -fr apache-jena-fuseki* && \
     rm fuseki.tar.gz* && \
     cd $FUSEKI_HOME && rm -rf fuseki.war && \
+    mkdir -p /vocabs-import && \
     cp -r /custom/log4j.properties $FUSEKI_BASE/  && \
     cp -r /custom/shiro.ini $FUSEKI_BASE/  && \
     cp -r /custom/docker-entrypoint.sh /docker-entrypoint.sh  && \
