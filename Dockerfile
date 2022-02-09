@@ -1,4 +1,4 @@
-FROM openjdk:11-bullseye
+FROM openjdk:11-jre-slim-bullseye
 MAINTAINER Dalibor Pančić <dalibor.pancic@oeaw.ac.at>
 
 # corresponding *.tar.gz.sha512 from https://www.apache.org/dist/jena/binaries/
@@ -12,6 +12,8 @@ ENV USER=user \
     FUSEKI_BASE=/fuseki \
     FUSEKI_HOME=/jena-fuseki \
     RAM=20G \
+    LANG C.UTF-8 \
+    PATH $PATH:/jena-fuseki/bin \
     JAVA_OPTS="-XX:+UnlockExperimentalVMOptions -XX:+UseContainerSupport -XX:MaxRAMFraction=1 -XX:+UseShenandoahGC -XX:ShenandoahGCHeuristics=compact -XX:+UseStringDeduplication -XX:+ExitOnOutOfMemoryError"   
 
 COPY custom /custom
@@ -34,10 +36,7 @@ RUN apt-get update && apt-get install -y wget unzip curl links ruby sudo && \
     rm -fr /custom && \ 
     sed -i 's|--Xmx4G|--Xmx$RAM|g' $FUSEKI_HOME/fuseki-server && \
     mkdir -p /vocabs-import && \ 
-    cd /vocabs-import && ln -s /$FUSEKI_HOME/bin bin && \
-    ln -s bin/s-put s-put && \
-    ln -s bin/tdbloader tdbloader && \
-    ln -s bin/tdbloader2 tdbloader2 && \
+    cd /vocabs-import && \
     ln -s $FUSEKI_BASE/databases databases && \
     ln -s $FUSEKI_BASE/configuration configuration && \
     chown -R $USER:$USER  $FUSEKI_HOME $FUSEKI_BASE /vocabs-import
