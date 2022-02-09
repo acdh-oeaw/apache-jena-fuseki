@@ -31,10 +31,11 @@ RUN mkdir -p $FUSEKI_BASE && \
     mv apache-jena-fuseki*/* $FUSEKI_HOME && \
     rm -fr apache-jena-fuseki* && \
     rm fuseki.tar.gz* && \
-    cd $FUSEKI_HOME && rm -rf fuseki.war && \
-    cp -r /custom/* $FUSEKI_BASE/  && \
+    cd $FUSEKI_HOME && rm -rf fuseki.war 
+
+RUN cp -r /custom/* $FUSEKI_BASE/  && \
     rm -fr /custom && \ 
-    sed -i 's|1200M|$RAM|g' $FUSEKI_HOME/fuseki-server && \
+    sed -i 's|1200M|20600M|g' $FUSEKI_HOME/fuseki-server && \
     chown -R $USER:$USER  $FUSEKI_HOME $FUSEKI_BASE
 
 USER $USER
