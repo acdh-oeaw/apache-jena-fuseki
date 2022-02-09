@@ -41,6 +41,8 @@ RUN apt-get update && apt-get install -y wget unzip curl links ruby sudo && \
 
 USER $USER
 
+WORKDIR $FUSEKI_BASE
+
 VOLUME $FUSEKI_BASE
 
 EXPOSE 3030
