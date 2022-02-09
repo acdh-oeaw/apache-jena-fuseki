@@ -66,4 +66,4 @@ echo ""
 echo $files
 echo "#########"
 
-exec $FUSEKI_HOME/tdbloader $TDBLOADER_OPTS --loc=$FUSEKI_BASE/databases/$DB $files
+exec /vocabs-import/tdbloader $TDBLOADER_OPTS --loc=$FUSEKI_BASE/databases/$DB $files
