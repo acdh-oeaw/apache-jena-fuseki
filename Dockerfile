@@ -23,7 +23,7 @@ RUN groupadd --gid $UID $USER && useradd --gid $UID --uid $UID -d / $USER && ech
 
 RUN mkdir -p $FUSEKI_BASE && \
     mkdir -p $FUSEKI_HOME && \
-    cd /tmp && echo '$SHA512  fuseki.tar.gz' > fuseki.tar.gz.sha512 && \
+    cd /tmp && echo "$SHA512  fuseki.tar.gz" > fuseki.tar.gz.sha512 && \
     wget -O fuseki.tar.gz $MIRRORjena/binaries/apache-jena-fuseki-$VERSION.tar.gz || \
     wget -O fuseki.tar.gz $ARCHIVE/jena/binaries/apache-jena-fuseki-$VERSION.tar.gz && \
     sha512sum -c fuseki.tar.gz.sha512 && \
