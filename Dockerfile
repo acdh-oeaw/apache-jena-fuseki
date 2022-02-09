@@ -11,7 +11,7 @@ ENV USER=user \
     ARCHIVE=http://archive.apache.org/dist/ \
     FUSEKI_BASE=/fuseki \
     FUSEKI_HOME=/jena-fuseki \
-    RAM=20600M \
+    RAM=20G \
     JAVA_OPTS="-XX:+UnlockExperimentalVMOptions -XX:+UseContainerSupport -XX:MaxRAMFraction=1 -XX:+UseShenandoahGC -XX:ShenandoahGCHeuristics=compact -XX:+UseStringDeduplication -XX:+ExitOnOutOfMemoryError"   
 
 COPY custom /custom
@@ -32,7 +32,7 @@ RUN apt-get update && apt-get install -y wget unzip curl links ruby sudo && \
     cd $FUSEKI_HOME && rm -rf fuseki.war && \
     cp -r /custom/* $FUSEKI_BASE/  && \
     rm -fr /custom && \ 
-    sed -i 's|1200M|$RAM|g' $FUSEKI_HOME/fuseki-server && \
+    sed -i 's|--Xmx4G|--Xmx$RAM|g' $FUSEKI_HOME/fuseki-server && \
     chown -R $USER:$USER  $FUSEKI_HOME $FUSEKI_BASE
 
 USER $USER
