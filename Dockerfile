@@ -7,7 +7,7 @@ ENV USER=user \
     UID=1000 \ 
     SHA512=21850b9d106d40962cb8358cf5731509ed9f38be7f47a0fc7e2fa22247d89faf7b4ef3ecb58cac590b7592b3b8340b80214ab7ca67b9d1231acb68df62b8bd3d \
     VERSION=4.4.0 \
-    MIRROR=https://www.eu.apache.org/dist/ \
+    MIRROR=https://downloads.apache.org/ \
     ARCHIVE=https://archive.apache.org/dist/ \
     FUSEKI_BASE=/fuseki \
     FUSEKI_HOME=/jena-fuseki \
@@ -31,8 +31,8 @@ RUN mkdir -p $FUSEKI_BASE && \
     mv apache-jena-fuseki*/* $FUSEKI_HOME && \
     rm -fr apache-jena-fuseki* && \
     rm fuseki.tar.gz* && \
-    cd $FUSEKI_HOME && rm -rf fuseki.war 
-RUN cp /custom/* $FUSEKI_BASE/  && \
+    cd $FUSEKI_HOME && rm -rf fuseki.war && \
+    cp -r /custom/* $FUSEKI_BASE/  && \
     rm -fr /custom && \ 
     sed -i 's|1200M|$RAM|g' $FUSEKI_HOME/fuseki-server && \
     chown -R $USER:$USER  $FUSEKI_HOME $FUSEKI_BASE
