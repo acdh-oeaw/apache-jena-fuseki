@@ -33,15 +33,18 @@ RUN apt-get update && apt-get install -y wget unzip curl links ruby sudo && \
     cp -r /custom/* $FUSEKI_BASE/  && \
     rm -fr /custom && \ 
     sed -i 's|--Xmx4G|--Xmx$RAM|g' $FUSEKI_HOME/fuseki-server && \
-    cd $FUSEKI_BASE && ln -s /$FUSEKI_HOME/bin bin && \
-    cd $FUSEKI_BASE && ln -s bin/s-put s-put && \
-    cd $FUSEKI_BASE && ln -s bin/tdbloader tdbloader && \
-    cd $FUSEKI_BASE && ln -s bin/tdbloader2 tdbloader2 && \
-    chown -R $USER:$USER  $FUSEKI_HOME $FUSEKI_BASE
+    mkdir -p /vocabs-import && \ 
+    cd /vocabs-import && ln -s /$FUSEKI_HOME/bin bin && \
+    ln -s bin/s-put s-put && \
+    ln -s bin/tdbloader tdbloader && \
+    ln -s bin/tdbloader2 tdbloader2 && \
+    ln -s $FUSEKI_BASE/databases databases && \
+    ln -s $FUSEKI_BASE/configuration configuration && \
+    chown -R $USER:$USER  $FUSEKI_HOME $FUSEKI_BASE /vocabs-import
 
 USER $USER
 
-WORKDIR $FUSEKI_BASE
+WORKDIR /vocabs-import
 
 VOLUME $FUSEKI_BASE
 
