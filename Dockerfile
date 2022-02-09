@@ -7,8 +7,8 @@ ENV USER=user \
     UID=1000 \ 
     SHA512=21850b9d106d40962cb8358cf5731509ed9f38be7f47a0fc7e2fa22247d89faf7b4ef3ecb58cac590b7592b3b8340b80214ab7ca67b9d1231acb68df62b8bd3d \
     VERSION=4.4.0 \
-    MIRROR=https://downloads.apache.org/ \
-    ARCHIVE=https://archive.apache.org/dist/ \
+    MIRROR=http://www.apache.org/dyn/mirrors/mirrors.cgi?action=download&filename= \
+    ARCHIVE=http://archive.apache.org/dist/ \
     FUSEKI_BASE=/fuseki \
     FUSEKI_HOME=/jena-fuseki \
     RAM=20600M \
@@ -24,7 +24,7 @@ RUN groupadd --gid $UID $USER && useradd --gid $UID --uid $UID -d / $USER && ech
 RUN mkdir -p $FUSEKI_BASE && \
     mkdir -p $FUSEKI_HOME && \
     cd /tmp && echo '$SHA512  fuseki.tar.gz' > fuseki.tar.gz.sha512 && \
-    wget -O fuseki.tar.gz $MIRROR/jena/binaries/apache-jena-fuseki-$VERSION.tar.gz || \
+    wget -O fuseki.tar.gz $MIRRORjena/binaries/apache-jena-fuseki-$VERSION.tar.gz || \
     wget -O fuseki.tar.gz $ARCHIVE/jena/binaries/apache-jena-fuseki-$VERSION.tar.gz && \
     sha512sum -c fuseki.tar.gz.sha512 && \
     tar zxf fuseki.tar.gz && \
