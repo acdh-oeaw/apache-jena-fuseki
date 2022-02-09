@@ -18,7 +18,7 @@ ENV USER=user \
 
 COPY custom /custom
 
-RUN apt-get update && apt-get install -y wget unzip curl links ruby sudo && \
+RUN apt-get update && apt-get install -y wget unzip curl links ruby sudo bash curl ca-certificates findutils coreutils gettext pwgen procps tini && \
     apt-get clean && \
     groupadd --gid $UID $USER && useradd --gid $UID --uid $UID -d / $USER && echo "user:$6$04SIq7OY$7PT2WujGKsr6013IByauNo0tYLj/fperYRMC4nrsbODc9z.cnxqXDRkAmh8anwDwKctRUTiGhuoeali4JoeW8/:16231:0:99999:7:::" >> /etc/shadow && \
     mkdir -p $FUSEKI_BASE && \
@@ -32,7 +32,9 @@ RUN apt-get update && apt-get install -y wget unzip curl links ruby sudo && \
     rm -fr apache-jena-fuseki* && \
     rm fuseki.tar.gz* && \
     cd $FUSEKI_HOME && rm -rf fuseki.war && \
-    cp -r /custom/* $FUSEKI_BASE/  && \
+    cp -r /custom/log4j.properties $FUSEKI_BASE/  && \
+    cp -r /custom/shiro.ini $FUSEKI_BASE/  && \
+    cp -r /custom/docker-entrypoint.sh /docker-entrypoint.sh  && \
     rm -fr /custom && \ 
     sed -i 's|--Xmx4G|--Xmx$RAM|g' $FUSEKI_HOME/fuseki-server && \
     mkdir -p /vocabs-import && \ 
@@ -48,4 +50,5 @@ WORKDIR /vocabs-import
 VOLUME $FUSEKI_BASE
 
 EXPOSE 3030
+ENTRYPOINT ["/usr/bin/tini", "--", "/docker-entrypoint.sh"]
 CMD ["/jena-fuseki/fuseki-server"]
