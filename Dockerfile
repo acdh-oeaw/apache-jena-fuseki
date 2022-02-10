@@ -21,7 +21,6 @@ COPY custom /custom
 RUN apt-get update && apt-get install -y vim wget unzip curl links ruby sudo bash curl ca-certificates findutils coreutils gettext pwgen procps tini gosu && \
     apt-get clean && \
     groupadd --gid $UID $USER && useradd --gid $UID --uid $UID -d / $USER && echo "user:$6$04SIq7OY$7PT2WujGKsr6013IByauNo0tYLj/fperYRMC4nrsbODc9z.cnxqXDRkAmh8anwDwKctRUTiGhuoeali4JoeW8/:16231:0:99999:7:::" >> /etc/shadow && \
-    echo "user ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
     mkdir -p $FUSEKI_BASE && \
     mkdir -p $FUSEKI_HOME && \
     cd /tmp && echo "$SHA512  fuseki.tar.gz" > fuseki.tar.gz.sha512 && \
@@ -59,13 +58,12 @@ RUN apt-get update && apt-get install -y vim wget unzip curl links ruby sudo bas
     ln -s $FUSEKI_BASE/configuration configuration && \
     chown -R $USER:$USER  $FUSEKI_HOME $FUSEKI_BASE /vocabs-import
 
-USER $USER
 
 WORKDIR /vocabs-import
 
-VOLUME $FUSEKI_BASE
+VOLUME $FUSEKI_BASE/databases $FUSEKI_BASE/configuration /vocabs-import
 
 EXPOSE 3030
 ENTRYPOINT ["/usr/bin/tini", "--", "/docker-entrypoint.sh"]
 #NOTE: for importing put command "/bin/bash" in Rancher command field  
-CMD ["/jena-fuseki/fuseki-server"]
+CMD ["gosu", "user", "/jena-fuseki/fuseki-server"]
