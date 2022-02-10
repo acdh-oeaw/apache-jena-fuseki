@@ -49,8 +49,9 @@ Following directories should be persistent:
 2. Put the file that should be imported in /vocabs-import
 3. Go to Rancher GUI ---> Vocabs ---> Edit the pod apache-jena-fuseki ---> Show advanced options ---> Command ---> Entrypoint ---> Add /bin/bash ---> Save
 4. Enter container and execute:
-```./load.sh destination yourdatadump.rdf 	
+```
+./load.sh destination yourdatadump.rdf 	
+
 ```
 where destination is a name of your database (e.g. largedataset)
-
 5. Go back to Rancher GUI and remove  "/bin/bash" command added in the third step .
