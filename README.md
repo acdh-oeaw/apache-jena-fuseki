@@ -22,7 +22,7 @@ Following directories should be persistent:
 
 ### How to upload large dataset via command line
 
-1. Check the config file (e.g. fuseki-data/configuration/largedataset.ttl) for a graph, it should contain:
+1. Check the config file (e.g. /fuseki/configuration/largedataset.ttl) for a graph, it should contain:
 
   ```@prefix :      <http://base/#> .
 @prefix tdb:   <http://jena.hpl.hp.com/2008/tdb#> .
