@@ -33,7 +33,7 @@ RUN apt-get update && apt-get install -y vim wget unzip curl links ruby bash cur
     rm fuseki.tar.gz* && \
     cd $FUSEKI_HOME && rm -rf fuseki.war && \
 # add Jena libs
-    cd /tmp && echo "$JENA_LIB_SHA5122  jena.tar.gz" > jena.tar.gz.sha512 && \
+    cd /tmp && echo "$JENA_LIB_SHA512  jena.tar.gz" > jena.tar.gz.sha512 && \
     wget -O jena.tar.gz $MIRRORjena/binaries/apache-jena-$VERSION.tar.gz || \
     wget -O jena.tar.gz $ARCHIVE/jena/binaries/apache-jena-$VERSION.tar.gz && \
     sha512sum -c jena.tar.gz.sha512 && \
