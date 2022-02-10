@@ -1,4 +1,4 @@
-# Apache Jena Fuseki
+# Apache Jena Fuseki for the ACDH-CH Vocabs service
 
 A Docker image uses ShenandoahGC that reduces GC pause times by performing more garbage collection work concurrently with the running Java program.
 
@@ -22,7 +22,7 @@ Following directories should be persistent:
 
 ### How to upload large dataset via command line
 
-1. check the config file (e.g. fuseki-data/configuration/largedataset.ttl) for a graph, it should contain:
+1. Check the config file (e.g. fuseki-data/configuration/largedataset.ttl) for a graph, it should contain:
 
   ```@prefix :      <http://base/#> .
 @prefix tdb:   <http://jena.hpl.hp.com/2008/tdb#> .
@@ -48,5 +48,9 @@ Following directories should be persistent:
   ```
 2. Put the file that should be imported in /vocabs-import
 3. Go to Rancher GUI ---> Vocabs ---> Edit the pod apache-jena-fuseki ---> Show advanced options ---> Command ---> Entrypoint ---> Add /bin/bash ---> Save
-4. Enter container and execute: ./load.sh destination yourdatadump.rdf 	
+4. Enter container and execute:
+```./load.sh destination yourdatadump.rdf 	
+```
+where destination is a name of your database (e.g. largedataset)
+
 5. Go back to Rancher GUI and remove  "/bin/bash" command added in the third step .
