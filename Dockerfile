@@ -18,7 +18,7 @@ ENV USER=user \
 
 COPY custom /custom
 
-RUN apt-get update && apt-get install -y vim wget unzip curl links ruby sudo bash curl ca-certificates findutils coreutils gettext pwgen procps tini gosu && \
+RUN apt-get update && apt-get install -y vim wget unzip curl links ruby bash curl ca-certificates findutils coreutils gettext pwgen procps tini gosu && \
     apt-get clean && \
     groupadd --gid $UID $USER && useradd --gid $UID --uid $UID -d / $USER && echo "user:$6$04SIq7OY$7PT2WujGKsr6013IByauNo0tYLj/fperYRMC4nrsbODc9z.cnxqXDRkAmh8anwDwKctRUTiGhuoeali4JoeW8/:16231:0:99999:7:::" >> /etc/shadow && \
     mkdir -p $FUSEKI_BASE && \
@@ -33,11 +33,9 @@ RUN apt-get update && apt-get install -y vim wget unzip curl links ruby sudo bas
     rm fuseki.tar.gz* && \
     cd $FUSEKI_HOME && rm -rf fuseki.war && \
 # add Jena libs
-    # sha512 checksum
-    cd /tmp && echo "$JENA_LIB_SHA512  jena.tar.gz" > jena.tar.gz.sha512 && \
-    # Download/check/unpack/move in one go (to reduce image size)
-    (curl --location --silent --show-error --fail --retry-connrefused --retry 3 --output jena.tar.gz ${MIRROR}jena/binaries/apache-jena-$VERSION.tar.gz || \
-         curl --fail --silent --show-error --retry-connrefused --retry 3 --output jena.tar.gz $ARCHIVE/jena/binaries/apache-jena-$VERSION.tar.gz) && \
+    cd /tmp && echo "$JENA_LIB_SHA5122  jena.tar.gz" > jena.tar.gz.sha512 && \
+    wget -O jena.tar.gz ${MIRROR}jena/binaries/apache-jena-$VERSION.tar.gz || \
+    wget -O jena.tar.gz $ARCHIVE/jena/binaries/apache-jena-$VERSION.tar.gz && \
     sha512sum -c jena.tar.gz.sha512 && \
     tar zxf jena.tar.gz && \
     mv apache-jena*/bin/* /jena-fuseki/bin/ && \
@@ -57,7 +55,6 @@ RUN apt-get update && apt-get install -y vim wget unzip curl links ruby sudo bas
     ln -s $FUSEKI_BASE/databases databases && \
     ln -s $FUSEKI_BASE/configuration configuration && \
     chown -R $USER:$USER  $FUSEKI_HOME $FUSEKI_BASE /vocabs-import
-
 
 WORKDIR /vocabs-import
 
