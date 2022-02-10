@@ -10,7 +10,7 @@ Deployment on ACDH-CH k8s cluster is performed over Github actions.
 
 | Environment Variable | Required | Default | Description                                                            |
 |----------------------|----------|---------|------------------------------------------------------------------------|
-| ADMIN_PASSWORD       |    +     |         | Admin password for Jena Fuseki. It can be set over the Rancher GIU     |
+| ADMIN_PASSWORD       |    +     |         | Admin password for Jena Fuseki. It can be set over the Rancher GUI     |
 | JVM_ARGS             |    +     |         | Specifies the RAM required for Jena Fuseki.                            |
 
 ### Data persistency
