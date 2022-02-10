@@ -51,7 +51,7 @@ Following directories should be persistent:
 4. Enter container and execute:
 ```
 ./load.sh destination yourdatadump.rdf 	
-
-```where destination is a name of your database (e.g. largedataset)
+```
+where destination is a name of your database (e.g. largedataset)
 
 5. Go back to Rancher GUI and remove  "/bin/bash" command added in the third step .
