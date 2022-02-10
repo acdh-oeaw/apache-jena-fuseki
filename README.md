@@ -50,6 +50,7 @@ Following directories should be persistent:
 3. Go to Rancher GUI ---> Vocabs ---> Edit the pod apache-jena-fuseki ---> Show advanced options ---> Command ---> Entrypoint ---> Add /bin/bash ---> Save
 4. Enter container and execute:
 ```
+su user
 ./load.sh destination yourdatadump.rdf 	
 ```
 where destination is a name of your database (e.g. largedataset)
