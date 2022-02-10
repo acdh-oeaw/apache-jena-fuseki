@@ -63,4 +63,4 @@ VOLUME $FUSEKI_BASE/databases $FUSEKI_BASE/configuration /vocabs-import
 EXPOSE 3030
 ENTRYPOINT ["/usr/bin/tini", "--", "/docker-entrypoint.sh"]
 #NOTE: for importing put command "/bin/bash" in Rancher command field  
-CMD ["gosu", "user", "/usr/bin/tini", "--", "/jena-fuseki/fuseki-server"]
+CMD ["gosu", "user", "/usr/bin/tini", "-s", "--", "/jena-fuseki/fuseki-server"]
