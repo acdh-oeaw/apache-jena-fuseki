@@ -39,6 +39,7 @@ RUN apt-get update && apt-get install -y vim wget unzip curl links ruby bash cur
     sha512sum -c jena.tar.gz.sha512 && \
     tar zxf jena.tar.gz && \
     mv apache-jena*/bin/* /jena-fuseki/bin/ && \
+    mv apache-jena*/lib /jena-fuseki/ && \
     rm jena.tar.gz* && \
     cd /jena-fuseki/bin/ && rm -rf *javadoc* *src* bat && \
 # create import dir
