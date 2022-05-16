@@ -1,7 +1,7 @@
 name: Create image and Deploy
 
 env:
-  IMAGE_TAG: apache-jena-fuseki:4.4.0
+  IMAGE_TAG: apache-jena-fuseki:4.5.0
 
 on:
   push:
