@@ -5,9 +5,9 @@ MAINTAINER Dalibor Pančić <dalibor.pancic@oeaw.ac.at>
 
 ENV USER=user \
     UID=1000 \ 
-    SHA512=1d60d596a4aa6f3c786e0da86190e406152ed2f5e0698960c6065a0b85bef5bde9844771ddb7cb22aefd95e38c1510ae4ac4d089a484211edc167080ec3af452 \
-    VERSION=4.5.0 \
-    JENA_LIB_SHA512=84e23ca41e8e38b286abf769d3ccdfe069f6157d58e0bb24e78d98ed5f8d598e06ededc16dd5bde0a494d5ee7c49ab9c4f5335cf63727a302e6b8b929d47457f \
+    SHA512=12a7c242584fa739d0d1d2a4025267552069d8bf7b411545d0328e3cacc3bceddaac0584b405772b51464c33f695da86182a60480c72a661264677281771e700 \
+    VERSION=4.6.1 \
+    JENA_LIB_SHA51220c8de036e20a1722d122d87b10ed13bbb759550aeca51fd02371450146fb792e79f63d81595ddc4f1b9c63e522a88da18b0880218954c627bec159aacc7c3c5 \
     MIRROR=http://www.apache.org/dyn/mirrors/mirrors.cgi?action=download&filename= \
     ARCHIVE=http://archive.apache.org/dist/ \
     FUSEKI_BASE=/fuseki \
