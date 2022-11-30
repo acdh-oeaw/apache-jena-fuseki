@@ -15,6 +15,7 @@
 #   limitations under the License.
 
 set -e
+find /fuseki/databases -name \tdb.lock -type f -delete
 
 if [ ! -f "$FUSEKI_BASE/shiro.ini" ] ; then
   # First time
